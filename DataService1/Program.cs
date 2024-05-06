@@ -30,7 +30,7 @@ app.MapGet("/dataservice1/data/{signerId}", async (string signerId) =>
     
     if (delayTime > 1800)
     {
-        throw new Exception("Delay time exceeded 1.5 seconds.");
+        throw new Exception("Delay time exceeded 1.8 seconds.");
     }
 
     Console.WriteLine($"Processed request for signerId {signerId} in {stopwatch.ElapsedMilliseconds} ms");
