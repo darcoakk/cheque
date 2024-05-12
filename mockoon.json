@@ -1,0 +1,118 @@
+{
+  "uuid": "d33de072-8223-4b0f-8075-9545ea86ffdd",
+  "lastMigration": 32,
+  "name": "Mockoon",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3000,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "b9757f53-414e-49e9-9a20-7bc8ed488397",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "kkbcek/:id",
+      "responses": [
+        {
+          "uuid": "3133e478-4592-41e4-9ecf-361db36b070e",
+          "body": "<KKBChequeResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n  <errors>\n    <error>000</error>\n    <errorText>Başarılı Veri döndü</errorText>\n  </errors>\n  <data>\n    <bankaList>\n      <cekHesabiOlanBankaResponse>\n        <kurumAdi>DENİZBANK A Ş</kurumAdi>\n      </cekHesabiOlanBankaResponse>\n      <cekHesabiOlanBankaResponse>\n        <kurumAdi>T.GARANTİ BANKASI  A.Ş.</kurumAdi>\n      </cekHesabiOlanBankaResponse>\n    </bankaList>\n    <ihtiyatiTedbirliCekList />\n    <karsiliksizCekList />\n    <kesideEdilenCekTutarList>\n      <kesideEdilenCekTutarlariResponse>\n        <yil>2025</yil>\n        <enDusukTutar>0</enDusukTutar>\n        <enYuksekTutar>0</enYuksekTutar>\n        <ortalamaCekTutari>0</ortalamaCekTutari>\n      </kesideEdilenCekTutarlariResponse>\n      <kesideEdilenCekTutarlariResponse>\n        <yil>2024</yil>\n        <enDusukTutar>250000</enDusukTutar>\n        <enYuksekTutar>2000000</enYuksekTutar>\n        <ortalamaCekTutari>807142.86</ortalamaCekTutari>\n      </kesideEdilenCekTutarlariResponse>\n      <kesideEdilenCekTutarlariResponse>\n        <yil>2024</yil>\n        <enDusukTutar>100000</enDusukTutar>\n        <enYuksekTutar>6400000</enYuksekTutar>\n        <ortalamaCekTutari>829494.34</ortalamaCekTutari>\n      </kesideEdilenCekTutarlariResponse>\n      <kesideEdilenCekTutarlariResponse>\n        <yil>2023</yil>\n        <enDusukTutar>500000</enDusukTutar>\n        <enYuksekTutar>1500000</enYuksekTutar>\n        <ortalamaCekTutari>916666.67</ortalamaCekTutari>\n      </kesideEdilenCekTutarlariResponse>\n      <kesideEdilenCekTutarlariResponse>\n        <yil>2022</yil>\n        <enDusukTutar>0</enDusukTutar>\n        <enYuksekTutar>0</enYuksekTutar>\n        <ortalamaCekTutari>0</ortalamaCekTutari>\n      </kesideEdilenCekTutarlariResponse>\n      <kesideEdilenCekTutarlariResponse>\n        <yil>2021</yil>\n        <enDusukTutar>0</enDusukTutar>\n        <enYuksekTutar>0</enYuksekTutar>\n        <ortalamaCekTutari>0</ortalamaCekTutari>\n      </kesideEdilenCekTutarlariResponse>\n      <kesideEdilenCekTutarlariResponse>\n        <yil>2020</yil>\n        <enDusukTutar>0</enDusukTutar>\n        <enYuksekTutar>0</enYuksekTutar>\n        <ortalamaCekTutari>0</ortalamaCekTutari>\n      </kesideEdilenCekTutarlariResponse>\n    </kesideEdilenCekTutarList>\n    <sonCirantayaAitCekOzet>\n      <son1AyTahsilEdilenCekTutar>0</son1AyTahsilEdilenCekTutar>\n      <son1AyKarsiliksizCekTutar>0</son1AyKarsiliksizCekTutar>\n      <son1AyOdenmiseDonenCekTutar>0</son1AyOdenmiseDonenCekTutar>\n      <son1AyTahsilEdilenCekTutariOran>0</son1AyTahsilEdilenCekTutariOran>\n      <son1AyOdenmiseDonenCekTutariOran>0</son1AyOdenmiseDonenCekTutariOran>\n      <son3AyTahsilEdilenCekTutar>0</son3AyTahsilEdilenCekTutar>\n      <son3AyKarsiliksizCekTutar>0</son3AyKarsiliksizCekTutar>\n      <son3AyOdenmiseDonenCekTutar>0</son3AyOdenmiseDonenCekTutar>\n      <son3AyTahsilEdilenCekTutariOran>0</son3AyTahsilEdilenCekTutariOran>\n      <son3AyOdenmiseDonenCekTutariOran>0</son3AyOdenmiseDonenCekTutariOran>\n      <son12AyTahsilEdilenCekTutar>0</son12AyTahsilEdilenCekTutar>\n      <son12AyKarsiliksizCekTutar>0</son12AyKarsiliksizCekTutar>\n      <son12AyOdenmiseDonenCekTutar>0</son12AyOdenmiseDonenCekTutar>\n      <son12AyTahsilEdilenCekTutariOran>0</son12AyTahsilEdilenCekTutariOran>\n      <son12AyOdenmiseDonenCekTutariOran>0</son12AyOdenmiseDonenCekTutariOran>\n    </sonCirantayaAitCekOzet>\n    <vadeliCekOzetList>\n      <vadeliCekOzetResponse>\n        <vadeliCekDonemi>1</vadeliCekDonemi>\n        <vadeliToplamCekAdedi>15</vadeliToplamCekAdedi>\n        <vadeliToplamCekTutari>11950000</vadeliToplamCekTutari>\n      </vadeliCekOzetResponse>\n      <vadeliCekOzetResponse>\n        <vadeliCekDonemi>3</vadeliCekDonemi>\n        <vadeliToplamCekAdedi>21</vadeliToplamCekAdedi>\n        <vadeliToplamCekTutari>16950000</vadeliToplamCekTutari>\n      </vadeliCekOzetResponse>\n      <vadeliCekOzetResponse>\n        <vadeliCekDonemi>6</vadeliCekDonemi>\n        <vadeliToplamCekAdedi>21</vadeliToplamCekAdedi>\n        <vadeliToplamCekTutari>16950000</vadeliToplamCekTutari>\n      </vadeliCekOzetResponse>\n      <vadeliCekOzetResponse>\n        <vadeliCekDonemi>12</vadeliCekDonemi>\n        <vadeliToplamCekAdedi>21</vadeliToplamCekAdedi>\n        <vadeliToplamCekTutari>16950000</vadeliToplamCekTutari>\n      </vadeliCekOzetResponse>\n      <vadeliCekOzetResponse>\n        <vadeliCekDonemi>B12</vadeliCekDonemi>\n        <vadeliToplamCekAdedi>0</vadeliToplamCekAdedi>\n        <vadeliToplamCekTutari>0</vadeliToplamCekTutari>\n      </vadeliCekOzetResponse>\n    </vadeliCekOzetList>\n    <acikCekAdedi>77</acikCekAdedi>\n    <toplamVadeliCekAdedi>21</toplamVadeliCekAdedi>\n    <sistemeDonmeyenCekAdedi>56</sistemeDonmeyenCekAdedi>\n    <toplamCekSayisi>86</toplamCekSayisi>\n    <toplamOdenmisCekSayisi>86</toplamOdenmisCekSayisi>\n    <toplamOdenmisCekTutari>71598030.26</toplamOdenmisCekTutari>\n    <karsiliksizBTuruToplamCekSayisi>0</karsiliksizBTuruToplamCekSayisi>\n    <karsiliksizBTuruToplamCekTutari>0</karsiliksizBTuruToplamCekTutari>\n    <karsiliksizKTuruToplamCekSayisi>0</karsiliksizKTuruToplamCekSayisi>\n    <karsiliksizKTuruToplamCekTutari>0</karsiliksizKTuruToplamCekTutari>\n    <ibrazEdilenIlkCekinTarihi>20231229</ibrazEdilenIlkCekinTarihi>\n    <ibrazindaOdenenSonCekinTarihi>20240426</ibrazindaOdenenSonCekinTarihi>\n    <ilkKarsiliksizTarihi />\n    <sonKarsiliksizTarihi />\n    <sonAyOdenenCekSayisi>24</sonAyOdenenCekSayisi>\n    <sonAyOdenenCekTutari>17383422</sonAyOdenenCekTutari>\n    <sonAyBTuruCekSayisi>0</sonAyBTuruCekSayisi>\n    <sonAyBTuruCekTutari>0</sonAyBTuruCekTutari>\n    <sonAyKTuruCekSayisi>0</sonAyKTuruCekSayisi>\n    <sonAyKTuruCekTutari>0</sonAyKTuruCekTutari>\n    <son3AyOdenenCekSayisi>66</son3AyOdenenCekSayisi>\n    <son3AyOdenenCekTutari>49455134.76</son3AyOdenenCekTutari>\n    <son3AyBTuruCekSayisi>0</son3AyBTuruCekSayisi>\n    <son3AyBTuruCekTutari>0</son3AyBTuruCekTutari>\n    <son3AyKTuruCekSayisi>0</son3AyKTuruCekSayisi>\n    <son3AyKTuruCekTutari>0</son3AyKTuruCekTutari>\n    <son12AyOdenenCekSayisi>86</son12AyOdenenCekSayisi>\n    <son12AyOdenenCekTutari>71598030.26</son12AyOdenenCekTutari>\n    <son12AyBTuruCekSayisi>0</son12AyBTuruCekSayisi>\n    <son12AyBTuruCekTutari>0</son12AyBTuruCekTutari>\n    <son12AyKTuruCekSayisi>0</son12AyKTuruCekSayisi>\n    <son12AyKTuruCekTutari>0</son12AyKTuruCekTutari>\n  </data>\n  <CekAutomaticallyResult>\n    <CekAutoResult>\n      <CekNo>0613873</CekNo>\n      <AutomaticallyResult>34</AutomaticallyResult>\n      <kesidecison12AyOdenenCekTutari>71598030.26</kesidecison12AyOdenenCekTutari>\n      <musterimevcutkesidecektutar>0</musterimevcutkesidecektutar>\n      <CekTutar>1000000.0</CekTutar>\n      <sonikiyilmaxtutar>6400000</sonikiyilmaxtutar>\n      <sonikiyilorttutar>916666.67</sonikiyilorttutar>\n      <CekVade>2024-07-26T00:00:00+03:00</CekVade>\n      <tedarikcifinansmanlimiti>-1</tedarikcifinansmanlimiti>\n      <skor>615</skor>\n    </CekAutoResult>\n  </CekAutomaticallyResult>\n</KKBChequeResponse>",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "",
+              "value": ""
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "f1e6108a-da76-447a-8df7-44e0c8a548e5",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "memzuc/:id",
+      "responses": [
+        {
+          "uuid": "a9ee92c7-7b45-4dc9-b7cb-73b451d899db",
+          "body": "<MemzucEntResponse xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <bankasayisi>4</bankasayisi>\r\n  <errors>\r\n    <error>000</error>\r\n    <errorText>Başarılı veri döndü</errorText>\r\n  </errors>\r\n  <data>\r\n    <MemzucEntResult>\r\n      <period>202403</period>\r\n      <riskkod>100</riskkod>\r\n      <limit>627565155</limit>\r\n      <toplamrisk>201627494</toplamrisk>\r\n      <kisavade>194377529</kisavade>\r\n      <ortavade>0</ortavade>\r\n      <uzunvade>0</uzunvade>\r\n      <faizrees>7249965</faizrees>\r\n      <faiztah>0</faiztah>\r\n    </MemzucEntResult>\r\n    <MemzucEntResult>\r\n      <period>202312</period>\r\n      <riskkod>100</riskkod>\r\n      <limit>434459356</limit>\r\n      <toplamrisk>163911809</toplamrisk>\r\n      <kisavade>157774639</kisavade>\r\n      <ortavade>0</ortavade>\r\n      <uzunvade>0</uzunvade>\r\n      <faizrees>6137170</faizrees>\r\n      <faiztah>0</faiztah>\r\n    </MemzucEntResult>\r\n    <MemzucEntResult>\r\n      <period>202312</period>\r\n      <riskkod>700</riskkod>\r\n      <limit>28000001</limit>\r\n      <toplamrisk>0</toplamrisk>\r\n      <kisavade>0</kisavade>\r\n      <ortavade>0</ortavade>\r\n      <uzunvade>0</uzunvade>\r\n      <faizrees>0</faizrees>\r\n      <faiztah>0</faiztah>\r\n    </MemzucEntResult>\r\n    <MemzucEntResult>\r\n      <period>202403</period>\r\n      <riskkod>Nakit</riskkod>\r\n      <limit>627565155</limit>\r\n      <toplamrisk>201627494</toplamrisk>\r\n      <kisavade>194377529</kisavade>\r\n      <ortavade>0</ortavade>\r\n      <uzunvade>0</uzunvade>\r\n      <faizrees>7249965</faizrees>\r\n      <faiztah>0</faiztah>\r\n    </MemzucEntResult>\r\n    <MemzucEntResult>\r\n      <period>202312</period>\r\n      <riskkod>Nakit</riskkod>\r\n      <limit>462459357</limit>\r\n      <toplamrisk>163911809</toplamrisk>\r\n      <kisavade>157774639</kisavade>\r\n      <ortavade>0</ortavade>\r\n      <uzunvade>0</uzunvade>\r\n      <faizrees>6137170</faizrees>\r\n      <faiztah>0</faiztah>\r\n    </MemzucEntResult>\r\n    <MemzucEntResult>\r\n      <period>202403</period>\r\n      <riskkod>200</riskkod>\r\n      <limit>84083000</limit>\r\n      <toplamrisk>71832645</toplamrisk>\r\n      <kisavade>71832645</kisavade>\r\n      <ortavade>0</ortavade>\r\n      <uzunvade>0</uzunvade>\r\n      <faizrees>0</faizrees>\r\n      <faiztah>0</faiztah>\r\n    </MemzucEntResult>\r\n    <MemzucEntResult>\r\n      <period>202403</period>\r\n      <riskkod>203</riskkod>\r\n      <limit>110065310</limit>\r\n      <toplamrisk>34472610</toplamrisk>\r\n      <kisavade>34472610</kisavade>\r\n      <ortavade>0</ortavade>\r\n      <uzunvade>0</uzunvade>\r\n      <faizrees>0</faizrees>\r\n      <faiztah>0</faiztah>\r\n    </MemzucEntResult>\r\n    <MemzucEntResult>\r\n      <period>202312</period>\r\n      <riskkod>203</riskkod>\r\n      <limit>660644</limit>\r\n      <toplamrisk>498644</toplamrisk>\r\n      <kisavade>498644</kisavade>\r\n      <ortavade>0</ortavade>\r\n      <uzunvade>0</uzunvade>\r\n      <faizrees>0</faizrees>\r\n      <faiztah>0</faiztah>\r\n    </MemzucEntResult>\r\n    <MemzucEntResult>\r\n      <period>202403</period>\r\n      <riskkod>Gayri Nakit</riskkod>\r\n      <limit>194148310</limit>\r\n      <toplamrisk>106305255</toplamrisk>\r\n      <kisavade>106305255</kisavade>\r\n      <ortavade>0</ortavade>\r\n      <uzunvade>0</uzunvade>\r\n      <faizrees>0</faizrees>\r\n      <faiztah>0</faiztah>\r\n    </MemzucEntResult>\r\n    <MemzucEntResult>\r\n      <period>202312</period>\r\n      <riskkod>Gayri Nakit</riskkod>\r\n      <limit>660644</limit>\r\n      <toplamrisk>498644</toplamrisk>\r\n      <kisavade>498644</kisavade>\r\n      <ortavade>0</ortavade>\r\n      <uzunvade>0</uzunvade>\r\n      <faizrees>0</faizrees>\r\n      <faiztah>0</faiztah>\r\n    </MemzucEntResult>\r\n    <MemzucEntResult>\r\n      <period>202403</period>\r\n      <riskkod>Toplam</riskkod>\r\n      <limit>821713465</limit>\r\n      <toplamrisk>307932749</toplamrisk>\r\n      <kisavade>300682784</kisavade>\r\n      <ortavade>0</ortavade>\r\n      <uzunvade>0</uzunvade>\r\n      <faizrees>7249965</faizrees>\r\n      <faiztah>0</faiztah>\r\n    </MemzucEntResult>\r\n    <MemzucEntResult>\r\n      <period>202312</period>\r\n      <riskkod>Toplam</riskkod>\r\n      <limit>463120001</limit>\r\n      <toplamrisk>164410453</toplamrisk>\r\n      <kisavade>158273283</kisavade>\r\n      <ortavade>0</ortavade>\r\n      <uzunvade>0</uzunvade>\r\n      <faizrees>6137170</faizrees>\r\n      <faiztah>0</faiztah>\r\n    </MemzucEntResult>\r\n  </data>\r\n  <AutomaticallyResult />\r\n</MemzucEntResponse>",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "b9757f53-414e-49e9-9a20-7bc8ed488397"
+    },
+    {
+      "type": "route",
+      "uuid": "f1e6108a-da76-447a-8df7-44e0c8a548e5"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [],
+  "callbacks": []
+}

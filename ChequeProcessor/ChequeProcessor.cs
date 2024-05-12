@@ -3,8 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
+
 using SharedLibrary;
 using Microsoft.Extensions.Logging;
+using System.Net.Http;
+using KKB;
+using Memzuc;
+
 
 public class ChequeProcessor
 {
@@ -18,77 +24,122 @@ public class ChequeProcessor
         _logger = logger;
     }
  
-    public async Task<ResponseData> ProcessChequesAsync(List<Cheque> cheques)
+    public List<string> GetUniqueIdentifiers(List<Cheque> cheques)
     {
-        var signerIds = cheques.SelectMany(c => c.SignerIds).Distinct();
-        var dataTasks = signerIds.ToDictionary(id => id, id => FetchSignerDataAsync(id));
+        var uniqueIdentifiers = cheques
+            .SelectMany(c => new[] { c.Drawer, c.Payee, c.Guarantor })
+            .Where(id => id != null)
+            .Distinct()
+            .ToList();
 
-        await Task.WhenAll(dataTasks.Values);
-
-        var signerDataDictionary = dataTasks
-        .Where(pair => pair.Value.Result != null)
-        .ToDictionary(pair => pair.Key, pair => pair.Value.Result);
-
-        var decisionTasks = cheques.Select(async cheque =>
-        {
-            var relatedSigners = cheque.SignerIds
-                .Select(id => signerDataDictionary.ContainsKey(id) ? signerDataDictionary[id] : null)
-                .ToList();
-
-            cheque.Decision = relatedSigners.Any(signer => signer == null) 
-                                ? "NoDecision" 
-                                : await MakeDecisionAsync(cheque, relatedSigners.Cast<AugmentedSignerData>().ToList());
-        });
-
-        await Task.WhenAll(decisionTasks);
-        return new ResponseData { Cheques = cheques, AugmentedSignerDataList = signerDataDictionary.Values.ToList() };
+        return uniqueIdentifiers;
     }
 
-    private async Task<string> MakeDecisionAsync(Cheque cheque, List<AugmentedSignerData> relatedSigners)
+    public async Task<Either<List<ChequeResult>, List<string>>> ProcessChequesAsync(List<Cheque> cheques)
     {
-        // Create a Random object
-        var random = new Random();
+        var errors = cheques.SelectMany(c => c.Validate()).ToList();
+        if (errors.Any())
+        {
+            return new Either<List<ChequeResult>, List<string>>(errors);
+        }
+            
+        var identifiers = GetUniqueIdentifiers(cheques);
+        var dataTasks = identifiers.ToDictionary(id => id, id => FetchIdentifierDataAsync(id));
 
-        // Create a list of decisions
-        var decisions = new List<string> { "Green", "Yellow", "Red" };
+        await Task.WhenAll(dataTasks.Values);
+        Console.WriteLine($"Thread ID: {Thread.CurrentThread.ManagedThreadId} - WhenAll complete");
 
-        // Select a random decision
-        var decision = decisions[random.Next(decisions.Count)];
+        var signerDataDictionary = dataTasks
+            .Where(pair => pair.Value.Result != null)
+            .ToDictionary(pair => pair.Key, pair => pair.Value.Result);
 
-        return decision;
-    } 
+        var chequeResults = new List<ChequeResult>();
 
-    private async Task<AugmentedSignerData> FetchSignerDataAsync(string signerId)
+        foreach (var cheque in cheques)
+        {
+            var drawerData = signerDataDictionary[cheque.Drawer];
+            var payeeData = signerDataDictionary[cheque.Payee];
+            var guarantorData = cheque.Guarantor != null ? signerDataDictionary[cheque.Guarantor] : null;
+
+            // If any of the required data is missing, skip this cheque and add an error for each missing data
+            // Use a switch expression to handle the different combinations of missing data
+            var missingData = (drawerData == null, payeeData == null, guarantorData == null, cheque.Guarantor == null) switch
+            {
+                (true, true, _, _) => $"Missing signer data with id {cheque.Drawer} and holder data with id {cheque.Payee} for cheque {cheque.Id}",
+                (true, _, true, false) => $"Missing signer data with id {cheque.Drawer} and guarantor data with id {cheque.Guarantor} for cheque {cheque.Id}",
+                (_, true, true, false) => $"Missing holder data with id {cheque.Payee} and guarantor data with id {cheque.Guarantor} for cheque {cheque.Id}",
+                (true, _, _, _) => $"Missing signer data with id {cheque.Drawer} for cheque {cheque.Id}",
+                (_, true, _, _) => $"Missing holder data with id {cheque.Payee} for cheque {cheque.Id}",
+                (_, _, true, false) => $"Missing guarantor data with id {cheque.Guarantor} for cheque {cheque.Id}",
+                _ => null
+            };
+
+            if (missingData != null)
+            {
+                errors.Add(missingData);
+                continue;
+            }
+
+            
+
+            //cheque.Decision = await MakeDecisionAsync(cheque, new List<AugmentedSignerData> { signerData, holderData, guarantorData });
+
+            chequeResults.Add(new ChequeResult { Cheque = cheque, DrawerData = drawerData, PayeeData = payeeData, GuarantorData = guarantorData });
+        }
+
+        if (errors.Any())
+        {
+            return new Either<List<ChequeResult>, List<string>>(errors);
+        }
+        else
+        {
+            return new Either<List<ChequeResult>, List<string>>(chequeResults);
+        }
+    }
+
+    
+
+    private async Task<AugmentedSignerData> FetchIdentifierDataAsync(string identifier)
     {
         try
         {
-            // Fetch signer data using signerId
-            var response1 = await _httpClient.GetAsync($"http://localhost:7002/dataservice1/data/{signerId}");
-            var response2 = await _httpClient.GetAsync($"http://localhost:7003/dataservice2/data/{signerId}");
+            // Start both requests
+            Task<HttpResponseMessage> response1Task = _httpClient.GetAsync($"http://localhost:3000/kkbcek/{identifier}");
+            Task<HttpResponseMessage> response2Task = _httpClient.GetAsync($"http://localhost:3000/memzuc/{identifier}");
 
-            response1.EnsureSuccessStatusCode();
-            response2.EnsureSuccessStatusCode();
+            // Await both requests
+            HttpResponseMessage[] responses = await Task.WhenAll(response1Task, response2Task);
 
-            var data1 = await response1.Content.ReadAsAsync<DataService1Response>();
-            var data2 = await response2.Content.ReadAsAsync<DataService2Response>();
+            // Ensure both requests were successful
+            responses[0].EnsureSuccessStatusCode();
+            responses[1].EnsureSuccessStatusCode();
 
-            return new AugmentedSignerData
+            // Read the responses as streams
+            Stream kkbChequeStream = await responses[0].Content.ReadAsStreamAsync();
+            Stream memzucEntStream = await responses[1].Content.ReadAsStreamAsync();
+
+            var kkbSerializer = new XmlSerializer(typeof(KKBChequeResponse));
+            KKBChequeResponse kkbChequeData = (KKBChequeResponse)kkbSerializer.Deserialize(kkbChequeStream);
+
+            var memzucSerializer = new XmlSerializer(typeof(MemzucEntResponse));
+            MemzucEntResponse memzucEntData = (MemzucEntResponse)memzucSerializer.Deserialize(memzucEntStream);
+            foreach (var item in memzucEntData.Data.MemzucEntResults)
             {
-                SignerId = signerId,
-                Name = data1.Name,
-                Email = data1.Email,
-                TotalTransactionsLastYear = data2.TotalTransactionsLastYear,
-                AverageTransactionAmount = data2.AverageTransactionAmount
-            };
+                if (!string.IsNullOrEmpty(item.Period))
+                {
+                    item.SetPeriodDate();
+                }
+            }
+            return ToAugmentedSignerData.Map(memzucEntData, kkbChequeData);
         }
         catch (HttpRequestException ex)
         {
-            _logger.LogError(ex, $"Error fetching signer data for {signerId}");
+            _logger.LogError(ex, $"Error fetching signer data for {identifier}");
             return null;
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, $"Error fetching signer data for {signerId}");
+            _logger.LogError(ex, $"Error fetching signer data for {identifier}");
             return null;
         }
     }
