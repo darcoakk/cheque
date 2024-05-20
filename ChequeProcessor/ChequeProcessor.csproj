@@ -12,6 +12,7 @@
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="6.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     <ProjectReference Include="..\SharedLibrary\SharedLibrary.csproj" />
+    <ProjectReference Include="..\client\src\Org.OpenAPITools\Org.OpenAPITools.csproj" />
   </ItemGroup>
 
 </Project>

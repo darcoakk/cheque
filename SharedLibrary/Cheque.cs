@@ -2,7 +2,9 @@
 {
     public class Cheque
     {
-        public int Id { get; set; }
+        public int No { get; set; }
+        public DateTime MaturityDate { get; set; }
+        public decimal Amount { get; set; }
         public string Drawer { get; set; }
         public string Payee { get; set; }
         public string? Guarantor { get; set; }
@@ -14,13 +16,13 @@
             var drawerIdentifier = Identifier.Create(Drawer);
             if (drawerIdentifier.IsRight)
             {
-                errors.Add($"Invalid signer for cheque {Id}: {drawerIdentifier.Right}");
+                errors.Add($"Invalid signer for cheque {No}: {drawerIdentifier.Right}");
             }
 
             var payeeIdentifier = Identifier.Create(Payee);
             if (payeeIdentifier.IsRight)
             {
-                errors.Add($"Invalid holder for cheque {Id}: {payeeIdentifier.Right}");
+                errors.Add($"Invalid holder for cheque {No}: {payeeIdentifier.Right}");
             }
 
             if (Guarantor != null)
@@ -28,7 +30,7 @@
                 var guarantorIdentifier = Identifier.Create(Guarantor);
                 if (guarantorIdentifier.IsRight)
                 {
-                    errors.Add($"Invalid guarantor for cheque {Id}: {guarantorIdentifier.Right}");
+                    errors.Add($"Invalid guarantor for cheque {No}: {guarantorIdentifier.Right}");
                 }
             }
 

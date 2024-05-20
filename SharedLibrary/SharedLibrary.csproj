@@ -6,4 +6,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\client\src\Org.OpenAPITools\Org.OpenAPITools.csproj" />
+  </ItemGroup>
 </Project>

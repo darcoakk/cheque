@@ -2,6 +2,7 @@ using CalcResult = Either<decimal,string>;
 
 public class AugmentedSignerData
 {
+    public int chequeScore { get; set; }
     public CalcResult MaxDelayedPaymentLast3Months { get; set; }
     public List<object> MaxDelayedPaymentLast3MonthsLog { get; set; }
 
